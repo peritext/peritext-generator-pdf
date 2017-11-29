@@ -1,6 +1,6 @@
 {
   "name": "peritext-generator-pdf",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "peritext pdf output generator",
   "main": "dist/index.js",
   "scripts": {
@@ -19,6 +19,7 @@
     "react-dom": "^15.6.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.0.0",
     "babel-plugin-transform-class-properties": "^6.23.0",
@@ -42,6 +43,6 @@
     "peritext-contextualizer-vegalite": "0.0.7",
     "peritext-contextualizer-video": "0.0.8",
     "peritext-contextualizer-webpage": "0.0.8",
-    "peritext-template-codex-garlic": "0.0.20"
+    "peritext-template-codex-garlic": "0.0.31"
   }
 }

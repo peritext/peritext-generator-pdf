@@ -1,7 +1,8 @@
 const path = require('path');
 const generatePdf = require('./dist/index');
 const template = require('peritext-template-codex-garlic');
-const story = require('./examples/story');
+const story1 = require('./examples/story');
+const storyLinks = require('./examples/links');
 const exampleLocale = require('./example-locale');
 
 const contextualizers = {
@@ -19,11 +20,30 @@ const contextualizers = {
   'data-presentation': require('peritext-contextualizer-data-presentation'),
 };
 
-generatePdf({
-  story: story,
-  contextualizers,
-  template: template,
-  locale: exampleLocale,
-  tempDirPath: path.resolve(__dirname + '/temp'),
-  outputDirPath: path.resolve(__dirname + '/examples')
-});
+// generatePdf({
+//   story: story,
+//   contextualizers,
+//   template: template,
+//   locale: exampleLocale,
+//   tempDirPath: path.resolve(__dirname + '/temp'),
+//   outputDirPath: path.resolve(__dirname + '/examples')
+// });
+
+
+const stories = [story1, storyLinks].reduce((p, story) => 
+  p.then(() => new Promise((resolve, reject) => {
+    generatePdf({
+      story: story,
+      contextualizers,
+      template: template,
+      locale: exampleLocale,
+      tempDirPath: path.resolve(__dirname + '/temp'),
+      outputDirPath: path.resolve(__dirname + '/examples')
+    }, (err) => {
+      if (err) {
+        reject(err);
+      } else resolve(null);
+    });
+  }))
+  .catch(e => console.log(e)),
+  Promise.resolve());
